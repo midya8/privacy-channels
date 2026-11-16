@@ -34,6 +34,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: python -m privacylab testing examples/testing-input.json > /tmp/testing.json
+      - run: python -m pip install setuptools wheel
+      - run: python examples/verify_wheel.py
       - run: python -m pip wheel --no-deps . -w /tmp/wheels
       - run: |
           python -m privacylab demo > /tmp/source-demo.json
