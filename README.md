@@ -47,6 +47,19 @@ with clipped-mass bounds. `frontier` computes the full factor/delta curve for a
 smaller table domain. The original point-query limits and adaptive bounds do
 not change when using the frontier calculation.
 
+## Randomized tests for a listed secret pair
+
+`testing_tradeoff(channel, null_index, alternative_index, alpha)` returns the complete optimal type-I/type-II curve for one listed directed pair, plus an attaining randomized test and exact primal/dual certificate at the requested budget. It orders exact likelihood-ratio ties, includes free singular mass and keeps both-zero outputs explicit. The domain is at most four secrets and eight outputs. [Proof, convention and limits](TESTING.md).
+
+For randomized response with null `[3/4,1/4]` and alternative `[1/4,3/4]`, a false-positive budget of `1/8` allows no nonempty deterministic event. The randomized test `[0,1/2]` has power `3/8` and false-negative probability `5/8`. The dual threshold three certifies the optimum. This is a supplied-table calculation, not a trained classifier, observed attack or deployed privacy guarantee.
+
+```sh
+python -m privacylab testing examples/testing-input.json
+python examples/verify_wheel.py
+```
+
+Twelve new tests use an independent box-constraint LP-vertex oracle on 24 seeded channels and all 100 pairs of denominator-three laws, with exact curve, tie, singular-support, hockey-stick-duality and postprocessing checks. All 75 tests run against the installed wheel outside checkout; eight module origins, seven complete CLI reports and all three original figures are checked. The six earlier complete reports and all three SVG files are unchanged. Neyman-Pearson testing and randomized ties are established results, not a new privacy theorem.
+
 ## Multiplicative factor and epsilon
 
 The API accepts an exact rational factor `t = exp(epsilon) >= 1`, not epsilon itself. Factor 3 means epsilon `ln(3)`; factor 9 means epsilon `ln(9)`. No approximate exponential or logarithm participates in a decision.
@@ -93,7 +106,7 @@ Transform tests reconstruct every product probability/mapping; compare repeated 
 
 ## What this does not certify
 
-A table certificate applies to the supplied finite mechanism and listed neighbor graph only. It does not prove that a program samples that table, that randomness is secure/fresh/independent, that a neighboring-dataset relation covers a real application, or that unlisted possible inputs are protected. No trained-model guarantee, DP-SGD accountant, continuous Gaussian mechanism, privacy-loss convolution, advanced composition, adaptively chosen privacy parameters, privacy-utility optimum or production security claim. A low delta is not a probability that any particular person's secret leaks, and differential privacy does not promise that useful population facts remain hidden.
+A table certificate applies to the supplied finite mechanism and listed neighbor graph only. It does not prove that a program samples that table, that randomness is secure/fresh/independent, that a neighboring-dataset relation covers a real application, or that unlisted possible inputs are protected. No trained-model guarantee, DP-SGD accountant, continuous Gaussian mechanism, privacy-loss convolution, advanced composition, adaptively chosen privacy parameters, privacy-utility optimum or production security claim. The separate testing extension computes supplied-pair statistical tradeoffs only. A low delta is not a probability that any particular person's secret leaks, and differential privacy does not promise that useful population facts remain hidden.
 
 This implements established finite-distribution DP and hockey-stick divergence arithmetic, not a new privacy theorem. Primary references: Dwork and Roth's [Algorithmic Foundations of Differential Privacy](https://homepage.divms.uiowa.edu/~sriram/5980/spring17/privacybook.pdf), definition 2.4 and proposition 2.1; [modern privacy accounting notes](https://arxiv.org/pdf/2210.00597), proposition 7 and theorem 9; and Google Research's [privacy accounting overview](https://research.google/blog/differential-privacy-accounting-by-connecting-the-dots/). See [DESIGN.md](DESIGN.md) for the finite proof and implementation boundaries.
 
