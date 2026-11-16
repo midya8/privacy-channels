@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "channel": {
+    "schema_version": 1,
+    "secrets": [
+      "s0",
+      "s1"
+    ],
+    "outputs": [
+      "0",
+      "1"
+    ],
+    "neighbors": [
+      [
+        0,
+        1
+      ]
+    ],
+    "probabilities": [
+      [
+        "3/4",
+        "1/4"
+      ],
+      [
+        "1/4",
+        "3/4"
+      ]
+    ]
+  },
+  "null_index": 0,
+  "alternative_index": 1,
+  "alpha": "1/8"
+}
