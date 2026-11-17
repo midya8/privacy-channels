@@ -1,4 +1,4 @@
-# PrivacyLab
+# Privacy channels
 
 An exact finite-channel differential-privacy reference. Supply rational probability tables and explicit neighboring-secret edges; inspect the smallest delta at a multiplicative privacy factor, every attaining event, and the complete directed-pair arithmetic. Independent product and stochastic postprocessing helpers make randomness assumptions visible.
 
@@ -6,6 +6,9 @@ In the shared-coin control, private marginal releases reveal the secret when
 combined. `A = secret XOR Z` and `B = Z`, with `P(Z=0)=3/4`. The first marginal has pure factor 3 and the second has factor 1, yet the joint output reveals `secret = A XOR B` exactly. Its two conditional distributions have disjoint supports and delta 1 at every finite factor. This does not contradict a composition theorem: the required conditional-mechanism premise is false.
 
 ![Exact privacy factors, deltas and a shared-coin joint-release counterexample](assets/privacy-audit.svg)
+
+The repository is now `privacy-channels`. The Python import and CLI names stay
+`privacylab` for compatibility with existing scripts.
 
 ## Run offline
 
